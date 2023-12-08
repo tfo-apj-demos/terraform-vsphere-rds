@@ -8,4 +8,5 @@ variable "boundary_token" {
 
 variable "domain_admin_password" {
   type = string
+  default = ""
 }
