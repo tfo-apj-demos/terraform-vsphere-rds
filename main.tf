@@ -39,8 +39,8 @@ module "remote_desktop" {
   template = data.hcp_packer_image.this.cloud_image_id
   tags = {}
 
-  join_domain = "hashicorp.local"
-  #ad_domain = "hashicorp.local"
+  #join_domain = "hashicorp.local"
+  ad_domain = "hashicorp.local"
   domain_admin_user = "administrator"
   domain_admin_password = var.domain_admin_password
   admin_password = var.domain_admin_password
