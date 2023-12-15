@@ -9,3 +9,16 @@ variable "boundary_token" {
 variable "domain_admin_password" {
   type = string
 }
+
+variable "domain_admin_user" {
+  type = string
+}
+
+variable "ad_domain" {
+  type = string
+}
+
+variable "hostnames" {
+  type = list(string)
+  default = [ "rds-01" ]
+}

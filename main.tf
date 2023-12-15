@@ -9,19 +9,20 @@ data "nsxt_policy_ip_pool" "this" {
   display_name = "10 - gcve-foundations"
 }
 resource "nsxt_policy_ip_address_allocation" "this" {
+  for_each = toset(var.hostnames)
   display_name = "remote-desktop"
   pool_path    = data.nsxt_policy_ip_pool.this.path
 }
 
 module "rds" {
-
+    for_each = toset(var.hostnames)
     source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
     version = "~> 1.3"
     
     num_cpus = 4
     memory = 8192
 
-    hostname = "foo"
+    hostname = each.value
     cluster = "cluster"
     datacenter = "Datacenter"
     folder_path = "management"
@@ -38,10 +39,10 @@ module "rds" {
     disk_0_size = 60
 
     template = data.hcp_packer_image.this.cloud_image_id
-
-    ad_domain = "hashicorp.local"
-    domain_admin_user = "administrator"
-    domain_admin_password = var.domain_admin_password
+    admin_password = "Hashi123!"
+    #ad_domain = var.ad_domain
+    #domain_admin_user = var.domain_admin_user
+    #domain_admin_password = var.domain_admin_password
 }
 
 
