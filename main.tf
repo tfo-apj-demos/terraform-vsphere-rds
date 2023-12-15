@@ -28,7 +28,7 @@ module "rds" {
     folder_path = "management"
     primary_datastore = "vsanDatastore"
     networks = {
-      "seg-general":"${nsxt_policy_ip_address_allocation.this.allocation_ip}/22"
+      "seg-general":"${nsxt_policy_ip_address_allocation.this["${each.value}"].allocation_ip}/22"
     }
     dns_server_list = [
       "172.21.15.150",
