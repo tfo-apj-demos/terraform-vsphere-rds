@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/vsphere"
       version = "2.5.1"
     }
+    ad = {
+      source = "hashicorp/ad"
+      version = "0.4.4"
+    }
   }
 }
 

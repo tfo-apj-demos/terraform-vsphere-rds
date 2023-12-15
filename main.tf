@@ -40,11 +40,16 @@ module "rds" {
 
     template = data.hcp_packer_image.this.cloud_image_id
     admin_password = "Hashi123!"
-    #ad_domain = var.ad_domain
-    #domain_admin_user = var.domain_admin_user
-    #domain_admin_password = var.domain_admin_password
+    ad_domain = var.ad_domain
+    domain_admin_user = var.domain_admin_user
+    domain_admin_password = var.domain_admin_password
 }
 
+resource "ad_computer" "this" {
+  for_each = toset(var.hostnames)
+  name      = each.value
+  pre2kname = each.value
+}
 
 module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
