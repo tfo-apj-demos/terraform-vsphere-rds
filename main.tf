@@ -50,12 +50,11 @@ module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
   version = "~> 0.0"
 
-  hosts = [
-    { 
-      "hostname" = module.rds.virtual_machine_name, 
-      "address" = module.rds.ip_address
-    }
-  ]
+  hosts = [ for host in module.rds: {
+    "hostname" = host.virtual_machine_name
+    "address" = host.ip_address
+  }]
+
   services = [
     { 
       name = "rdp",
