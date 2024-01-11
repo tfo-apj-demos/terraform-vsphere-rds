@@ -47,13 +47,24 @@ module "rds" {
 }
 
 resource "ad_computer" "this" {
-  #for_each = toset(var.hostnames)
+  for_each = toset(var.hostnames)
 
-  name        = "rds-01"
-  pre2kname   = "rds-01"
+  name        = each.value  # using each.value to get the current hostname
+  pre2kname   = each.value  # same here
   container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
   description = "Terraform Managed Windows Computer"
 }
+
+module "domain-name-system-management" {
+  source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
+  version = "~> 1.0"
+
+  a_records = [for hostname in var.hostnames : {
+    name      = hostname
+    addresses = [module.rds[hostname].ip_address]
+  }]
+}
+
 
 module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
