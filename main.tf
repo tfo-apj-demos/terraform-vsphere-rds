@@ -39,16 +39,20 @@ module "rds" {
     disk_0_size = 60
 
     template = data.hcp_packer_image.this.cloud_image_id
-    admin_password = "Hashi123!"
-    ad_domain = var.ad_domain
-    domain_admin_user = var.domain_admin_user
+        
+    admin_password        = var.admin_password
+    ad_domain             = var.ad_domain
+    domain_admin_user     = var.domain_admin_user
     domain_admin_password = var.domain_admin_password
 }
 
 resource "ad_computer" "this" {
   for_each = toset(var.hostnames)
-  name      = each.value
-  pre2kname = each.value
+
+  name        = each.value  # using each.value to get the current hostname
+  pre2kname   = each.value  # same here
+  container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
+  description = "Terraform Managed Windows Computer"
 }
 
 module "boundary_target" {
