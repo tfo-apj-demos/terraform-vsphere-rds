@@ -47,10 +47,10 @@ module "rds" {
 }
 
 resource "ad_computer" "this" {
-  for_each = toset(var.hostnames)
+  #for_each = toset(var.hostnames)
 
-  name        = each.value  # using each.value to get the current hostname
-  pre2kname   = each.value  # same here
+  name        = "rds-01"
+  pre2kname   = "rds-01"
   container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
   description = "Terraform Managed Windows Computer"
 }
