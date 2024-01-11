@@ -71,8 +71,8 @@ module "boundary_target" {
       port = "3389"
     }
   ]
-  project_name = "CloudbrokerAz"
-  host_catalog_id = "hcst_x02GKmATwx"
+  project_name = "grantorchard"
+  host_catalog_id = "hcst_7B2FWBRqb0"
   hostname_prefix = "remote-desktop"
   injected_credential_library_ids = []
 }
