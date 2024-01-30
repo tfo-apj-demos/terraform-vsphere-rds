@@ -1,6 +1,6 @@
 data "hcp_packer_image" "this" {
   bucket_name    = "base-windows-2022"
-  channel        = "lts"
+  channel        = "latest"
   cloud_provider = "vsphere"
   region         = "Datacenter"
 }
@@ -17,7 +17,7 @@ resource "nsxt_policy_ip_address_allocation" "this" {
 module "rds" {
     for_each = toset(var.hostnames)
     source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
-    version = "~> 1"
+    version = "1.3.5"
     
     num_cpus = 4
     memory = 8192
@@ -82,9 +82,8 @@ module "boundary_target" {
       port = "3389"
     }
   ]
-  project_name = "gcve_admins"
+  project_name = "grantorchard"
   host_catalog_id = "hcst_7B2FWBRqb0"
   hostname_prefix = "remote-desktop"
   injected_credential_library_ids = []
 }
-
