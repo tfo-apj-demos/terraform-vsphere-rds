@@ -82,7 +82,7 @@ module "boundary_target" {
       port = "3389"
     }
   ]
-  project_name = "grantorchard"
+  project_name = "gcve_admins"
   host_catalog_id = "hcst_7B2FWBRqb0"
   hostname_prefix = "remote-desktop"
   injected_credential_library_ids = []
