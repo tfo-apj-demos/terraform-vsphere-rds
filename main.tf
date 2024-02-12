@@ -67,7 +67,7 @@ module "domain-name-system-management" {
 
 module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "0.0.3"
+  version = "0.0.4"
 
   hosts = [ for host in module.rds: {
     "hostname" = host.virtual_machine_name
@@ -81,7 +81,7 @@ module "boundary_target" {
       port = "3389"
     }
   ]
-  #vault_address = var.vault_address
+  vault_address = var.vault_address
   project_name = "grantorchard"
   host_catalog_id = "hcst_7B2FWBRqb0"
   hostname_prefix = "remote-desktop"
