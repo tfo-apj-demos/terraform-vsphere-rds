@@ -32,3 +32,7 @@ variable "admin_password" {
   sensitive = true
   default   = ""
 }
+
+variable "vault_address" {
+  type = string
+}
