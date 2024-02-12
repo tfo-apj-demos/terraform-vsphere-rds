@@ -67,7 +67,7 @@ module "domain-name-system-management" {
 
 module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "~> 0.0"
+  version = "0.0.3"
 
   hosts = [ for host in module.rds: {
     "hostname" = host.virtual_machine_name
