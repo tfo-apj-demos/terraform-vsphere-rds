@@ -81,7 +81,7 @@ module "boundary_target" {
       port = "3389"
     }
   ]
-  vault_address = var.vault_address
+  #vault_address = var.vault_address
   project_name = "grantorchard"
   host_catalog_id = "hcst_7B2FWBRqb0"
   hostname_prefix = "remote-desktop"
