@@ -7,8 +7,8 @@ variable "boundary_token" {
 }
 
 variable "hostnames" {
-  type = list(string)
-  default = [ "rds-01" ]
+  type    = list(string)
+  default = ["rds-01"]
 }
 
 variable "ad_domain" {
