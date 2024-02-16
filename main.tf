@@ -77,7 +77,7 @@ resource "vault_token" "this" {
   }
 }
 
-module "boundary_target" {
+/*module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
   version = "1.0.11-alpha"
 
@@ -101,4 +101,4 @@ module "boundary_target" {
   credential_store_token = vault_token.this.client_token
   vault_address          = var.vault_address
   vault_ca_cert          = file("${path.root}/ca_cert_dir/ca_chain.pem")
-}
+}*/
