@@ -69,7 +69,8 @@ resource "vault_token" "this" {
   no_parent = true
   period    = "24h"
   policies = [
-    "ldap_reader"
+    "ldap_reader",
+    "revoke_lease"
   ]
   metadata = {
     "purpose" = "service-account"
