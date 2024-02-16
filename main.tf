@@ -38,7 +38,7 @@ module "rds" {
   dns_suffix_list = ["hashicorp.local"]
   disk_0_size     = 60
 
-  template = data.hcp_packer_image.this.cloud_image_id
+  template = data.hcp_packer_artifact.this.cloud_image_id
 
   admin_password        = var.admin_password
   ad_domain             = var.ad_domain
