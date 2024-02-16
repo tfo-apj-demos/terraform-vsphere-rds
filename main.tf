@@ -95,8 +95,8 @@ module "boundary_target" {
     }
   ]
 
-  project_name           = "grantorchard"
-  host_catalog_id        = "hcst_7B2FWBRqb0"
+  project_name           = "shared_services"
+  host_catalog_id        = "hcst_1lWZVwU02l"
   hostname_prefix        = "remote_desktop"
   credential_store_token = vault_token.this.client_token
   vault_address          = var.vault_address
