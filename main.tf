@@ -1,8 +1,8 @@
 data "hcp_packer_artifact" "this" {
-  bucket_name = "base-windows-2022"
-  channel     = "latest"
-  platform    = "vsphere"
-  region      = "Datacenter"
+  bucket_name  = "base-windows-2022"
+  channel_name = "latest"
+  platform     = "vsphere"
+  region       = "Datacenter"
 }
 
 data "nsxt_policy_ip_pool" "this" {
