@@ -68,7 +68,9 @@ module "domain-name-system-management" {
 resource "vault_token" "this" {
   no_parent = true
   period    = "24h"
-  policies = ["ldap_reader"]]
+  policies = [
+    "ldap_reader"
+  ]
   metadata = {
     "purpose" = "service-account"
   }
@@ -91,10 +93,10 @@ module "boundary_target" {
     }
   ]
 
-  project_name = "grantorchard"
-  host_catalog_id = "hcst_7B2FWBRqb0"
-  hostname_prefix = "remote_desktop"
+  project_name           = "grantorchard"
+  host_catalog_id        = "hcst_7B2FWBRqb0"
+  hostname_prefix        = "remote_desktop"
   credential_store_token = vault_token.this.client_token
-  vault_address = var.vault_address
-  vault_ca_cert = file("${path.root}/ca_cert_dir/ca_chain.pem")
+  vault_address          = var.vault_address
+  vault_ca_cert          = file("${path.root}/ca_cert_dir/ca_chain.pem")
 }

@@ -34,6 +34,6 @@ variable "admin_password" {
 }
 
 variable "vault_address" {
-  type = string
+  type    = string
   default = "https://vault.hashicorp.local:8200"
 }
