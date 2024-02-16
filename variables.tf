@@ -34,5 +34,5 @@ variable "admin_password" {
 }
 
 variable "vault_address" {
-  type    = string
+  type = string
 }

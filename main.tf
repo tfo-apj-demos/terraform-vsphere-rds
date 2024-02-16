@@ -1,8 +1,8 @@
-data "hcp_packer_image" "this" {
-  bucket_name    = "base-windows-2022"
-  channel        = "latest"
-  cloud_provider = "vsphere"
-  region         = "Datacenter"
+data "hcp_packer_artifact" "this" {
+  bucket_name = "base-windows-2022"
+  channel     = "latest"
+  platform    = "vsphere"
+  region      = "Datacenter"
 }
 
 data "nsxt_policy_ip_pool" "this" {
@@ -88,9 +88,9 @@ module "boundary_target" {
 
   services = [
     {
-      name = "rdp",
-      type = "tcp",
-      port = "3389" 
+      name             = "rdp",
+      type             = "tcp",
+      port             = "3389"
       credential_paths = ["ldap/creds/vault_ldap_dynamic_demo_role"]
     }
   ]
