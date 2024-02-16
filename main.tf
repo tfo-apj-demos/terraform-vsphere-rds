@@ -65,10 +65,18 @@ module "domain-name-system-management" {
   }]
 }
 
+resource "vault_token" "this" {
+  no_parent = true
+  period    = "24h"
+  policies = ["ldap_reader"]]
+  metadata = {
+    "purpose" = "service-account"
+  }
+}
+
 module "boundary_target" {
-  #source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  #version = "~> 0.1"
-  source  = "github.com/tfo-apj-demos/terraform-boundary-target"
+  source  = "app.terraform.io/tfo-apj-demos/target/boundary"
+  version = "1.0.11-alpha"
 
   hosts = [for host in module.rds : {
     "hostname" = host.virtual_machine_name
@@ -82,9 +90,11 @@ module "boundary_target" {
       port = "3389"
     }
   ]
-  vault_address                   = var.vault_address
-  project_name                    = "grantorchard"
-  host_catalog_id                 = "hcst_7B2FWBRqb0"
-  hostname_prefix                 = "remote-desktop"
-  injected_credential_library_ids = []
+
+  project_name = "grantorchard"
+  host_catalog_id = "hcst_7B2FWBRqb0"
+  hostname_prefix = "remote_desktop"
+  credential_store_token = vault_token.this.client_token
+  vault_address = var.vault_address
+  vault_ca_cert = file("${path.root}/ca_cert_dir/ca_chain.pem")
 }
