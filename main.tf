@@ -25,7 +25,8 @@ module "rds" {
   hostname          = each.value
   cluster           = "cluster"
   datacenter        = "Datacenter"
-  folder_path       = "management"
+  folder_path       = "Demo Management"
+  resource_pool     = "Demo Management"
   primary_datastore = "vsanDatastore"
   networks = {
     "seg-general" : "${nsxt_policy_ip_address_allocation.this["${each.value}"].allocation_ip}/22"
