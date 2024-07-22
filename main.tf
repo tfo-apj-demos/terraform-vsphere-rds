@@ -17,7 +17,7 @@ resource "nsxt_policy_ip_address_allocation" "this" {
 module "rds" {
   for_each = toset(var.hostnames)
   source   = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
-  version  = "1.3.5"
+  version  = "1.3.6"
 
   num_cpus = 4
   memory   = 8192
