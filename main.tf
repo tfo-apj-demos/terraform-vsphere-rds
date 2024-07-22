@@ -25,7 +25,7 @@ module "rds" {
   hostname          = each.value
   cluster           = "cluster"
   datacenter        = "Datacenter"
-  folder_path       = "Demo Management"
+  folder_path       = "sea-tfc-agents"
   resource_pool     = "Demo Management"
   primary_datastore = "vsanDatastore"
   networks = {
