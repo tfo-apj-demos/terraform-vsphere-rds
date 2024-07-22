@@ -23,10 +23,10 @@ module "rds" {
   memory   = 8192
 
   hostname          = each.value
-  cluster           = "cluster"
   datacenter        = "Datacenter"
-  folder_path       = "sea-tfc-agents"
+  cluster           = "cluster"
   primary_datastore = "vsanDatastore"
+  folder_path       = "Demo Workloads"
   networks = {
     "seg-general" : "${nsxt_policy_ip_address_allocation.this["${each.value}"].allocation_ip}/22"
   }
