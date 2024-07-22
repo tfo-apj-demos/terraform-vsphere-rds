@@ -26,7 +26,6 @@ module "rds" {
   cluster           = "cluster"
   datacenter        = "Datacenter"
   folder_path       = "sea-tfc-agents"
-  resource_pool     = "Demo Management"
   primary_datastore = "vsanDatastore"
   networks = {
     "seg-general" : "${nsxt_policy_ip_address_allocation.this["${each.value}"].allocation_ip}/22"
