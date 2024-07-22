@@ -80,7 +80,7 @@ resource "vault_token" "this" {
 
 module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "1.0.11-alpha"
+  version = "1.0.13-alpha"
 
   hosts = [for host in module.rds : {
     "hostname" = host.virtual_machine_name
