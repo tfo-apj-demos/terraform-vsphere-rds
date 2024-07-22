@@ -23,6 +23,3 @@ provider "boundary" {
   addr  = var.boundary_address
   token = var.boundary_token
 }
-
-provider "vsphere" {
-}
