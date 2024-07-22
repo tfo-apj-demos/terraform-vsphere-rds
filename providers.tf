@@ -2,15 +2,15 @@ terraform {
   required_providers {
     nsxt = {
       source  = "vmware/nsxt"
-      version = "3.4"
+      version = "~> 3"
     }
     vsphere = {
       source  = "hashicorp/vsphere"
-      version = "2.5.1"
+      version = "~> 2"
     }
     ad = {
       source  = "hashicorp/ad"
-      version = "0.4.4"
+      version = "~> 0"
     }
     vault = {
       source  = "hashicorp/vault"
