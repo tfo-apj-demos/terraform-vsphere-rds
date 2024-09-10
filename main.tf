@@ -79,7 +79,7 @@ resource "vault_token" "this" {
 
 module "rdp_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "~> 1.4"
+  version = "~> 1.5"
 
   project_name           = "shared_services"
   hostname_prefix        = "On-Prem Windows Remote Desktop"
@@ -92,9 +92,9 @@ module "rdp_target" {
   }]
 
   services = [{
-      name             = "rdp",
-      type             = "tcp",
-      port             = "3389",
-      credential_paths = ["ldap/creds/vault_ldap_dynamic_demo_role"]
+    name             = "rdp",
+    type             = "tcp",
+    port             = 3389,
+    credential_paths = ["ldap/creds/vault_ldap_dynamic_demo_role"]
   }]
 }
