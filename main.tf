@@ -77,28 +77,25 @@ resource "vault_token" "this" {
   }
 }
 
-module "boundary_target" {
+/*module "boundary_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "1.0.13-alpha"
+  version = "~> 1.4"
+
+  project_name           = "shared_services"
+  hostname_prefix        = "On-Prem Windows Remote Desktop"
+  credential_store_token = vault_token.this.client_token
+  vault_address          = "https://vault.hashicorp.local:8200"
 
   hosts = [for host in module.rds : {
     "hostname" = host.virtual_machine_name
     "address"  = host.ip_address
   }]
 
-  services = [
-    {
+  services = [{
       name             = "rdp",
       type             = "tcp",
       port             = "3389"
       credential_paths = ["ldap/creds/vault_ldap_dynamic_demo_role"]
-    }
-  ]
+    }]
+}*/
 
-  project_name           = "shared_services"
-  host_catalog_id        = "hcst_1lWZVwU02l"
-  hostname_prefix        = "remote_desktop"
-  credential_store_token = vault_token.this.client_token
-  vault_address          = var.vault_address
-  vault_ca_cert          = file("${path.root}/ca_cert_dir/ca_chain.pem")
-}
