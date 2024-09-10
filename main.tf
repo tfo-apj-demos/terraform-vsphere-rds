@@ -79,7 +79,7 @@ resource "vault_token" "this" {
 
 module "rdp_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "~> 1.5"
+  version = "~> 1.4"
 
   project_name           = "shared_services"
   hostname_prefix        = "On-Prem Windows Remote Desktop"
