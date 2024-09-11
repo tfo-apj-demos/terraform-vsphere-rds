@@ -16,6 +16,10 @@ terraform {
       source  = "hashicorp/vault"
       version = "~> 3"
     }
+    boundary = {
+      source = "hashicorp/boundary"
+      version = "~> 1"
+    }
   }
 }
 
