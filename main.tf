@@ -77,7 +77,7 @@ resource "vault_token" "this" {
   }
 }
 
-/*module "rdp_target" {
+module "rdp_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
   version = "~> 1.5"
 
@@ -97,4 +97,4 @@ resource "vault_token" "this" {
     port             = 3389,
     credential_paths = ["ldap/creds/vault_ldap_dynamic_demo_role"]
   }]
-}*/
+}
