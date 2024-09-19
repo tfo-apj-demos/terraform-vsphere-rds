@@ -81,7 +81,7 @@ module "windows_remote_desktop_target" {
   source  = "github.com/tfo-apj-demos/terraform-boundary-target-refactored"
 
   project_name           = "gcve_admins"
-  hostname_prefix        = "On-Prem Windows Remote Desktop"
+  hostname_prefix        = "On-Prem Windows Remote Desktop Server"
   credential_store_token = vault_token.this.client_token
   vault_address          = "https://vault.hashicorp.local:8200"
 
