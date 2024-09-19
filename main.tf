@@ -87,7 +87,7 @@ module "windows_remote_desktop_target" {
 
   hosts = [for host in module.rds : {
     hostname = host.virtual_machine_name
-    address  = host.ip_address
+    address  = host.virtual_machine_name
   }]
 
   services = [{
