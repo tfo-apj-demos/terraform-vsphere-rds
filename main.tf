@@ -77,11 +77,10 @@ resource "vault_token" "this" {
   }
 }
 
-module "rdp_target" {
-  source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "1.8.4"
+module "windows_remote_desktop_target" {
+  source  = "github.com/tfo-apj-demos/terraform-boundary-target-refactored"
 
-  project_name           = "shared_services"
+  project_name           = "gcve_admins"
   hostname_prefix        = "On-Prem Windows Remote Desktop"
   credential_store_token = vault_token.this.client_token
   vault_address          = "https://vault.hashicorp.local:8200"
@@ -92,9 +91,10 @@ module "rdp_target" {
   }]
 
   services = [{
-    name             = "rdp",
-    type             = "tcp",
-    port             = 3389,
+    type             = "tcp"
+    port             = 3389
+    use_existing_creds = false
+    use_vault_creds    = true
     credential_paths = ["ldap/creds/vault_ldap_dynamic_demo_role"]
   }]
 }
