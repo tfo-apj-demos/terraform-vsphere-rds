@@ -86,8 +86,7 @@ module "windows_remote_desktop_target" {
   vault_address          = "https://vault.hashicorp.local:8200"
 
   hosts = [for host in module.rds : {
-    hostname = host.virtual_machine_name
-    address  = host.virtual_machine_name
+    fqdn = "${host.virtual_machine_name}.hashicorp.local"
   }]
 
   services = [{
