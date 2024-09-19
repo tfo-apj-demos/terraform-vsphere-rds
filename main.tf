@@ -95,6 +95,6 @@ module "windows_remote_desktop_target" {
     port             = 3389
     use_existing_creds = false
     use_vault_creds    = true
-    credential_path = "ldap/creds/vault_ldap_dynamic_demo_role"
+    credential_path    = "ldap/creds/vault_ldap_dynamic_demo_role"
   }]
 }
