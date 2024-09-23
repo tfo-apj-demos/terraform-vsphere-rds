@@ -79,7 +79,7 @@ resource "vault_token" "this" {
 
 module "windows_remote_desktop_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "2.0.0"
+  version = "~> 2"
 
   project_name           = "gcve_admins"
   hostname_prefix        = "On-Prem Windows Remote Desktop Server"
