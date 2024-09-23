@@ -36,7 +36,7 @@ module "rds" {
   ]
   gateway         = "172.21.12.1"
   dns_suffix_list = ["hashicorp.local"]
-  disk_0_size     = 60
+  disk_0_size     = 100
 
   template = data.hcp_packer_artifact.this.external_identifier
 
