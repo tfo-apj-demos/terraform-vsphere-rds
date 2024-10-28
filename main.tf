@@ -77,24 +77,44 @@ resource "vault_token" "this" {
   }
 }
 
+# module "windows_remote_desktop_target" {
+#   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
+#   version = "~> 2"
+
+#   project_name           = "gcve_admins"
+#   hostname_prefix        = "On-Prem Windows Remote Desktop Server"
+#   credential_store_token = vault_token.this.client_token
+#   vault_address          = "https://vault.hashicorp.local:8200"
+
+#   hosts = [for host in module.rds : {
+#     fqdn = "${host.virtual_machine_name}.hashicorp.local"
+#   }]
+
+#   services = [{
+#     type             = "tcp"
+#     port             = 3389
+#     use_existing_creds = false
+#     use_vault_creds    = true
+#     credential_path    = "ldap/creds/vault_ldap_dynamic_demo_role"
+#   }]
+# }
+
 module "windows_remote_desktop_target" {
-  source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "~> 2"
-
-  project_name           = "gcve_admins"
-  hostname_prefix        = "On-Prem Windows Remote Desktop Server"
+  source               = "github.com/tfo-apj-demos/terraform-boundary-target-refactored"
+  
+  project_name         = "gcve_admins"
+  target_name          = "Windows Remote Desktop Server"
+  hosts                = ["rds-01.hashicorp.local"]
+  port                 = 3389
+  target_type          = "tcp"
+  
+  # Vault credential configurations
+  use_credentials      = true
   credential_store_token = vault_token.this.client_token
-  vault_address          = "https://vault.hashicorp.local:8200"
-
-  hosts = [for host in module.rds : {
-    fqdn = "${host.virtual_machine_name}.hashicorp.local"
-  }]
-
-  services = [{
-    type             = "tcp"
-    port             = 3389
-    use_existing_creds = false
-    use_vault_creds    = true
-    credential_path    = "ldap/creds/vault_ldap_dynamic_demo_role"
-  }]
+  vault_address        = "https://vault.hashicorp.local:8200"
+  credential_source    = "vault"
+  credential_path      = "ldap/creds/vault_ldap_dynamic_demo_role"
+  
+  # Alias name matching one of the Windows servers or a primary address for access
+  alias_name           = "rds-01.hashicorp.local"
 }
